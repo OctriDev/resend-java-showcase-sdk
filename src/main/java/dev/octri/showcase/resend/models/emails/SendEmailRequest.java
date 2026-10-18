@@ -49,9 +49,9 @@ public final class SendEmailRequest {
      */
     @Nullable public String text;
     /**
-     * Optional API value serialized in the `template` wire field.
+     * Use a published template to send the email. If provided, do not include html or text.
      */
-    @Nullable public SendEmailRequestTemplate template;
+    @Nullable public EmailTemplateInput template;
     /**
      * Custom headers to add to the email.
      */
@@ -83,7 +83,7 @@ public final class SendEmailRequest {
         private Object replyTo;
         private String html;
         private String text;
-        private SendEmailRequestTemplate template;
+        private EmailTemplateInput template;
         private Map<String, Object> headers;
         private String scheduledAt;
         private List<Attachment> attachments;
@@ -97,7 +97,7 @@ public final class SendEmailRequest {
         public Builder replyTo(Object value) { this.replyTo = value; return this; }
         public Builder html(String value) { this.html = value; return this; }
         public Builder text(String value) { this.text = value; return this; }
-        public Builder template(SendEmailRequestTemplate value) { this.template = value; return this; }
+        public Builder template(EmailTemplateInput value) { this.template = value; return this; }
         public Builder headers(Map<String, Object> value) { this.headers = value; return this; }
         public Builder scheduledAt(String value) { this.scheduledAt = value; return this; }
         public Builder attachments(List<Attachment> value) { this.attachments = value; return this; }

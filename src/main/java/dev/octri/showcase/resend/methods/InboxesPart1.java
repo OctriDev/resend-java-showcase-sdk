@@ -3,7 +3,6 @@
 
 package dev.octri.showcase.resend.methods;
 
-import dev.octri.showcase.resend.models.inbox_thread.InboxThreadFolderUpdatedEventDataFromEnum;
 import dev.octri.showcase.resend.models.inboxes.SearchInboxThreadsResponseSuccess;
 import dev.octri.showcase.resend.models.inboxes_create.CreateInboxDraftResponseSuccess;
 import dev.octri.showcase.resend.models.inboxes_create.CreateInboxLabelResponseSuccess;
@@ -29,6 +28,7 @@ import dev.octri.showcase.resend.models.inboxes_reply.ReplyInboxThreadEmailRespo
 import dev.octri.showcase.resend.models.inboxes_update.UpdateInboxAgentResponseSuccess;
 import dev.octri.showcase.resend.models.inboxes_update.UpdateInboxLabelResponseSuccess;
 import dev.octri.showcase.resend.models.inboxes_update.UpdateInboxResponseSuccess;
+import dev.octri.showcase.resend.models.inboxes_update.UpdateInboxThreadOptionsFolderEnum;
 import dev.octri.showcase.resend.models.shared.Attachment;
 import dev.octri.showcase.resend.SdkConfig;
 import dev.octri.showcase.resend.SdkClient;
@@ -471,7 +471,7 @@ public class InboxesPart1 {
         String inboxId = request.getInboxId();
         String threadId = request.getThreadId();
         Boolean read = request.getRead();
-        InboxThreadFolderUpdatedEventDataFromEnum folder = request.getFolder();
+        UpdateInboxThreadOptionsFolderEnum folder = request.getFolder();
         List<String> addLabelIds = request.getAddLabelIds();
         List<String> removeLabelIds = request.getRemoveLabelIds();
 
