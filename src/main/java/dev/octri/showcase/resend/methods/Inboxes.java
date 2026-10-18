@@ -3,10 +3,10 @@
 
 package dev.octri.showcase.resend.methods;
 
-import dev.octri.showcase.resend.models.inbox_thread.InboxThreadFolderUpdatedEventDataFromEnum;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxAgentEnabledActionsItemEnum;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxDraftAttachmentInput;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxThreadFolderEnum;
+import dev.octri.showcase.resend.models.inboxes_update.UpdateInboxThreadOptionsFolderEnum;
 import dev.octri.showcase.resend.models.shared.Attachment;
 import dev.octri.showcase.resend.SdkClient;
 import java.util.List;
@@ -354,7 +354,7 @@ public class Inboxes extends InboxesPart2 {
         private String inboxId;
         private String threadId;
         private Boolean read;
-        private InboxThreadFolderUpdatedEventDataFromEnum folder;
+        private UpdateInboxThreadOptionsFolderEnum folder;
         private List<String> addLabelIds;
         private List<String> removeLabelIds;
 
@@ -367,7 +367,7 @@ public class Inboxes extends InboxesPart2 {
             public Builder inboxId(String val) { request.inboxId = val; return this; }
             public Builder threadId(String val) { request.threadId = val; return this; }
             public Builder read(Boolean val) { request.read = val; return this; }
-            public Builder folder(InboxThreadFolderUpdatedEventDataFromEnum val) { request.folder = val; return this; }
+            public Builder folder(UpdateInboxThreadOptionsFolderEnum val) { request.folder = val; return this; }
             public Builder addLabelIds(List<String> val) { request.addLabelIds = val; return this; }
             public Builder removeLabelIds(List<String> val) { request.removeLabelIds = val; return this; }
             public InboxesUpdateThreadRequest build() { return request; }
@@ -375,7 +375,7 @@ public class Inboxes extends InboxesPart2 {
         public String getInboxId() { return inboxId; }
         public String getThreadId() { return threadId; }
         public Boolean getRead() { return read; }
-        public InboxThreadFolderUpdatedEventDataFromEnum getFolder() { return folder; }
+        public UpdateInboxThreadOptionsFolderEnum getFolder() { return folder; }
         public List<String> getAddLabelIds() { return addLabelIds; }
         public List<String> getRemoveLabelIds() { return removeLabelIds; }
     }

@@ -3,24 +3,55 @@
 
 package dev.octri.showcase.resend.models.inboxes_update;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.octri.showcase.resend.Validation;
+import java.util.List;
+import javax.annotation.Nullable;
+
 /**
  * UpdateInboxAgentOptions.
  * At least one of `instructions`, `tone`, or `enabled_actions` must be provided. Omitted fields keep their current value.
  */
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = UpdateInboxAgentOptions.Deserializer.class)
-public interface UpdateInboxAgentOptions {
-    /** Chooses the branch this payload is shaped like. */
-    final class Deserializer extends com.fasterxml.jackson.databind.JsonDeserializer<UpdateInboxAgentOptions> {
-        @java.lang.Override
-        public UpdateInboxAgentOptions deserialize(
-            com.fasterxml.jackson.core.JsonParser parser,
-            com.fasterxml.jackson.databind.DeserializationContext context)
-            throws java.io.IOException {
-            com.fasterxml.jackson.databind.ObjectMapper mapper =
-                (com.fasterxml.jackson.databind.ObjectMapper) parser.getCodec();
-            com.fasterxml.jackson.databind.JsonNode node = parser.readValueAsTree();
-            return new UpdateInboxAgentOptionsObjectValue(mapper.convertValue(node, new com.fasterxml.jackson.core.type.TypeReference<Object>() {}));
+public final class UpdateInboxAgentOptions {
+    /**
+     * Instructions the agent follows when it handles the threads of the inbox. Max 4000 characters. Leading and trailing whitespace is trimmed, and the trimmed value must not be empty. Send null to clear the instructions.
+     */
+    @Nullable public String instructions;
+    /**
+     * The tone the agent writes in. Send null to clear the tone.
+     */
+    @Nullable public UpdateInboxAgentOptionsToneEnum tone;
+    /**
+     * The actions the agent can take. Replaces the whole set. Duplicates are removed. Send an empty array to disable all actions.
+     */
+    @Nullable @JsonProperty("enabled_actions") public List<UpdateInboxAgentOptionsEnabledActionsItemEnum> enabledActions;
+    private UpdateInboxAgentOptions() {}
+    public static Builder builder() { return new Builder(); }
+    public static final class Builder {
+        private String instructions;
+        private UpdateInboxAgentOptionsToneEnum tone;
+        private List<UpdateInboxAgentOptionsEnabledActionsItemEnum> enabledActions;
+        public Builder instructions(String value) { this.instructions = value; return this; }
+        public Builder tone(UpdateInboxAgentOptionsToneEnum value) { this.tone = value; return this; }
+        public Builder enabledActions(List<UpdateInboxAgentOptionsEnabledActionsItemEnum> value) { this.enabledActions = value; return this; }
+        public UpdateInboxAgentOptions build() {
+            UpdateInboxAgentOptions result = new UpdateInboxAgentOptions();
+            if (this.instructions != null) {
+                { Validation.LengthOpts __length = new Validation.LengthOpts(); __length.min = 1; __length.max = 4000; Validation.validateLength("instructions", this.instructions, __length); }
+            }
+            result.instructions = this.instructions;
+            result.tone = this.tone;
+            result.enabledActions = this.enabledActions;
+            return result;
         }
+    }
+    @java.lang.Override
+    public String toString() {
+        return "UpdateInboxAgentOptions{"
+            + "instructions=" + instructions
+            + ", tone=" + tone
+            + ", enabledActions=" + enabledActions
+            + "}";
     }
 }

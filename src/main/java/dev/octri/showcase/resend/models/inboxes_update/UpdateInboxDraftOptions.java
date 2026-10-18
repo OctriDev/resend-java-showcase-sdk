@@ -3,24 +3,87 @@
 
 package dev.octri.showcase.resend.models.inboxes_update;
 
+import dev.octri.showcase.resend.Validation;
+import dev.octri.showcase.resend.models.inboxes_inbox.InboxDraftAttachmentInput;
+import java.util.List;
+import javax.annotation.Nullable;
+
 /**
  * UpdateInboxDraftOptions.
  * Send at least one of `to`, `cc`, `bcc`, `subject`, `text`, `html` or `attachments`. Omitted fields are left unchanged. Setting `text` or `html` replaces the whole body, so the body part you omit becomes `null`. The merged draft must contain at least one non-empty field, and its combined recipients cannot exceed 50.
  */
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = UpdateInboxDraftOptions.Deserializer.class)
-public interface UpdateInboxDraftOptions {
-    /** Chooses the branch this payload is shaped like. */
-    final class Deserializer extends com.fasterxml.jackson.databind.JsonDeserializer<UpdateInboxDraftOptions> {
-        @java.lang.Override
-        public UpdateInboxDraftOptions deserialize(
-            com.fasterxml.jackson.core.JsonParser parser,
-            com.fasterxml.jackson.databind.DeserializationContext context)
-            throws java.io.IOException {
-            com.fasterxml.jackson.databind.ObjectMapper mapper =
-                (com.fasterxml.jackson.databind.ObjectMapper) parser.getCodec();
-            com.fasterxml.jackson.databind.JsonNode node = parser.readValueAsTree();
-            return new UpdateInboxDraftOptionsObjectValue(mapper.convertValue(node, new com.fasterxml.jackson.core.type.TypeReference<Object>() {}));
+public final class UpdateInboxDraftOptions {
+    /**
+     * The recipients. For multiple addresses, send an array of strings. Each value can include a friendly name. Pass `null` to clear. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
+     */
+    @Nullable public Object to;
+    /**
+     * The CC recipients. Pass `null` or `[]` to clear. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
+     */
+    @Nullable public Object cc;
+    /**
+     * The BCC recipients. Pass `null` or `[]` to clear. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
+     */
+    @Nullable public Object bcc;
+    /**
+     * The subject. Max 2000 characters. Cannot be only whitespace or contain a line break. Pass `null` to clear.
+     */
+    @Nullable public String subject;
+    /**
+     * The HTML body. Pass `null` to clear.
+     */
+    @Nullable public String html;
+    /**
+     * The plain text body. Pass `null` to clear.
+     */
+    @Nullable public String text;
+    /**
+     * Files to store on the draft. Each one needs `content`, `filename` and `content_type`. A `path` without `content` returns a 422, and when both are sent, `path` is ignored. A `content_id` returns a 422. The files on a draft can total at most 25 MB. An empty file or a blocked file type returns a 422. Sending the field replaces every attachment on the draft. Send `[]` to remove them all. `null` also removes them all.
+     */
+    @Nullable public List<InboxDraftAttachmentInput> attachments;
+    private UpdateInboxDraftOptions() {}
+    public static Builder builder() { return new Builder(); }
+    public static final class Builder {
+        private Object to;
+        private Object cc;
+        private Object bcc;
+        private String subject;
+        private String html;
+        private String text;
+        private List<InboxDraftAttachmentInput> attachments;
+        public Builder to(Object value) { this.to = value; return this; }
+        public Builder cc(Object value) { this.cc = value; return this; }
+        public Builder bcc(Object value) { this.bcc = value; return this; }
+        public Builder subject(String value) { this.subject = value; return this; }
+        public Builder html(String value) { this.html = value; return this; }
+        public Builder text(String value) { this.text = value; return this; }
+        public Builder attachments(List<InboxDraftAttachmentInput> value) { this.attachments = value; return this; }
+        public UpdateInboxDraftOptions build() {
+            UpdateInboxDraftOptions result = new UpdateInboxDraftOptions();
+            result.to = this.to;
+            result.cc = this.cc;
+            result.bcc = this.bcc;
+            if (this.subject != null) {
+                { Validation.LengthOpts __length = new Validation.LengthOpts(); __length.min = 1; __length.max = 2000; Validation.validateLength("subject", this.subject, __length); }
+            }
+            result.subject = this.subject;
+            result.html = this.html;
+            result.text = this.text;
+            result.attachments = this.attachments;
+            return result;
         }
+    }
+    @java.lang.Override
+    public String toString() {
+        return "UpdateInboxDraftOptions{"
+            + "to=" + to
+            + ", cc=" + cc
+            + ", bcc=" + bcc
+            + ", subject=" + subject
+            + ", html=" + html
+            + ", text=" + text
+            + ", attachments=" + attachments
+            + "}";
     }
 }

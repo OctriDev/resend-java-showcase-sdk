@@ -3,24 +3,49 @@
 
 package dev.octri.showcase.resend.models.inboxes_update;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.octri.showcase.resend.Validation;
+import javax.annotation.Nullable;
+
 /**
  * UpdateInboxOptions.
  * Provide at least one of `name` or `from_name`.
  */
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = UpdateInboxOptions.Deserializer.class)
-public interface UpdateInboxOptions {
-    /** Chooses the branch this payload is shaped like. */
-    final class Deserializer extends com.fasterxml.jackson.databind.JsonDeserializer<UpdateInboxOptions> {
-        @java.lang.Override
-        public UpdateInboxOptions deserialize(
-            com.fasterxml.jackson.core.JsonParser parser,
-            com.fasterxml.jackson.databind.DeserializationContext context)
-            throws java.io.IOException {
-            com.fasterxml.jackson.databind.ObjectMapper mapper =
-                (com.fasterxml.jackson.databind.ObjectMapper) parser.getCodec();
-            com.fasterxml.jackson.databind.JsonNode node = parser.readValueAsTree();
-            return new UpdateInboxOptionsObjectValue(mapper.convertValue(node, new com.fasterxml.jackson.core.type.TypeReference<Object>() {}));
+public final class UpdateInboxOptions {
+    /**
+     * New internal name for the inbox. Recipients do not see it. Between 1 and 64 characters after trimming.
+     */
+    @Nullable public String name;
+    /**
+     * The name recipients see when mail is sent from this inbox. A plain name, not a `Name <email>` address. Max 78 characters. It cannot contain a colon, `<`, `>`, line breaks, or other control characters. An email address inside the name must be on a domain the team has verified for sending. An empty string removes it.
+     */
+    @Nullable @JsonProperty("from_name") public String fromName;
+    private UpdateInboxOptions() {}
+    public static Builder builder() { return new Builder(); }
+    public static final class Builder {
+        private String name;
+        private String fromName;
+        public Builder name(String value) { this.name = value; return this; }
+        public Builder fromName(String value) { this.fromName = value; return this; }
+        public UpdateInboxOptions build() {
+            UpdateInboxOptions result = new UpdateInboxOptions();
+            if (this.name != null) {
+                { Validation.LengthOpts __length = new Validation.LengthOpts(); __length.min = 1; __length.max = 64; Validation.validateLength("name", this.name, __length); }
+            }
+            result.name = this.name;
+            if (this.fromName != null) {
+                { Validation.LengthOpts __length = new Validation.LengthOpts(); __length.max = 78; Validation.validateLength("from_name", this.fromName, __length); }
+            }
+            result.fromName = this.fromName;
+            return result;
         }
+    }
+    @java.lang.Override
+    public String toString() {
+        return "UpdateInboxOptions{"
+            + "name=" + name
+            + ", fromName=" + fromName
+            + "}";
     }
 }

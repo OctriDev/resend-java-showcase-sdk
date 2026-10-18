@@ -3,24 +3,66 @@
 
 package dev.octri.showcase.resend.models.inboxes_update;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.octri.showcase.resend.Validation;
+import java.util.List;
+import javax.annotation.Nullable;
+
 /**
  * UpdateInboxThreadOptions.
  * At least one of `read`, `folder`, `add_label_ids`, or `remove_label_ids` is required. A label ID cannot be both added and removed in the same request.
  */
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = UpdateInboxThreadOptions.Deserializer.class)
-public interface UpdateInboxThreadOptions {
-    /** Chooses the branch this payload is shaped like. */
-    final class Deserializer extends com.fasterxml.jackson.databind.JsonDeserializer<UpdateInboxThreadOptions> {
-        @java.lang.Override
-        public UpdateInboxThreadOptions deserialize(
-            com.fasterxml.jackson.core.JsonParser parser,
-            com.fasterxml.jackson.databind.DeserializationContext context)
-            throws java.io.IOException {
-            com.fasterxml.jackson.databind.ObjectMapper mapper =
-                (com.fasterxml.jackson.databind.ObjectMapper) parser.getCodec();
-            com.fasterxml.jackson.databind.JsonNode node = parser.readValueAsTree();
-            return new UpdateInboxThreadOptionsObjectValue(mapper.convertValue(node, new com.fasterxml.jackson.core.type.TypeReference<Object>() {}));
+public final class UpdateInboxThreadOptions {
+    /**
+     * Marks every email in the thread read or unread.
+     */
+    @Nullable public Boolean read;
+    /**
+     * Moves the thread to this folder. `sent` is assigned automatically and cannot be set.
+     */
+    @Nullable public UpdateInboxThreadOptionsFolderEnum folder;
+    /**
+     * Label IDs to apply to the thread. Between 1 and 10 IDs. A label ID that does not exist in the inbox returns a 404.
+     */
+    @Nullable @JsonProperty("add_label_ids") public List<String> addLabelIds;
+    /**
+     * Label IDs to remove from the thread. Between 1 and 10 IDs. The labels themselves are kept. A label ID that does not exist in the inbox returns a 404.
+     */
+    @Nullable @JsonProperty("remove_label_ids") public List<String> removeLabelIds;
+    private UpdateInboxThreadOptions() {}
+    public static Builder builder() { return new Builder(); }
+    public static final class Builder {
+        private Boolean read;
+        private UpdateInboxThreadOptionsFolderEnum folder;
+        private List<String> addLabelIds;
+        private List<String> removeLabelIds;
+        public Builder read(Boolean value) { this.read = value; return this; }
+        public Builder folder(UpdateInboxThreadOptionsFolderEnum value) { this.folder = value; return this; }
+        public Builder addLabelIds(List<String> value) { this.addLabelIds = value; return this; }
+        public Builder removeLabelIds(List<String> value) { this.removeLabelIds = value; return this; }
+        public UpdateInboxThreadOptions build() {
+            UpdateInboxThreadOptions result = new UpdateInboxThreadOptions();
+            result.read = this.read;
+            result.folder = this.folder;
+            if (this.addLabelIds != null) {
+                { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.min = 1; __items.max = 10; Validation.validateItems("add_label_ids", this.addLabelIds, __items); }
+            }
+            result.addLabelIds = this.addLabelIds;
+            if (this.removeLabelIds != null) {
+                { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.min = 1; __items.max = 10; Validation.validateItems("remove_label_ids", this.removeLabelIds, __items); }
+            }
+            result.removeLabelIds = this.removeLabelIds;
+            return result;
         }
+    }
+    @java.lang.Override
+    public String toString() {
+        return "UpdateInboxThreadOptions{"
+            + "read=" + read
+            + ", folder=" + folder
+            + ", addLabelIds=" + addLabelIds
+            + ", removeLabelIds=" + removeLabelIds
+            + "}";
     }
 }
