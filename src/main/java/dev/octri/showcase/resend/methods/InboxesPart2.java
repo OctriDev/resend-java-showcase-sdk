@@ -16,6 +16,27 @@ import java.util.Map;
 
 public class InboxesPart2 extends InboxesPart1 {
     /**
+     * Retrieves a specific draft from an inbox. Use the inbox and draft identifiers to inspect its recipients, content, thread association, timestamps, and stored attachments.
+     */
+    public static InboxDraft inboxesGetDraft(SdkConfig.ClientConfig clientConfig, Inboxes.InboxesGetDraftRequest request) {
+        return inboxesGetDraft(clientConfig, request, null);
+    }
+
+    /**
+     * Retrieves a specific draft from an inbox. Use the inbox and draft identifiers to inspect its recipients, content, thread association, timestamps, and stored attachments.
+     */
+    public static InboxDraft inboxesGetDraft(SdkConfig.ClientConfig clientConfig, Inboxes.InboxesGetDraftRequest request, SdkConfig.RequestOptions options) {
+        String inboxId = request.getInboxId();
+        String draftId = request.getDraftId();
+
+        Validation.validateUuid("inbox_id", inboxId);
+
+        Validation.validateUuid("draft_id", draftId);
+
+        return SdkClient.request(clientConfig, "GET", "/inboxes/" + SdkClient.encodePathSegment(inboxId) + "/drafts/" + SdkClient.encodePathSegment(draftId) + "", null, null, null, new TypeReference<InboxDraft>(){}, "inboxesGetDraft", null, SdkClient.ResponseDecoder.JSON, options).data;
+    }
+
+    /**
      * Updates the content of an unsent draft in an inbox. Send only the fields you want to change; sending `attachments` replaces all attachments, while sending `text` or `html` replaces the entire body. The merged draft must retain at least one non-empty field and no more than 50 combined recipients.
      *
      * Updates the content of an unsent draft. Omitted fields are left unchanged. Send at least one of `to`, `cc`, `bcc`, `subject`, `text`, `html` or `attachments`. Sending `attachments` replaces every attachment on the draft. A request that sets `text` or `html` replaces the whole body. The body part you omit from that request becomes `null`. The merged draft must still contain at least one non-empty field, and its combined recipients cannot exceed 50. A draft that was already sent, or that changed during the request, returns a 409.
@@ -32,9 +53,9 @@ public class InboxesPart2 extends InboxesPart1 {
     public static InboxDraft inboxesUpdateDraft(SdkConfig.ClientConfig clientConfig, Inboxes.InboxesUpdateDraftRequest request, SdkConfig.RequestOptions options) {
         String inboxId = request.getInboxId();
         String draftId = request.getDraftId();
-        SdkClient.OptionalValue<Object> to = request.getTo();
-        SdkClient.OptionalValue<Object> cc = request.getCc();
-        SdkClient.OptionalValue<Object> bcc = request.getBcc();
+        SdkClient.OptionalValue<List<String>> to = request.getTo();
+        SdkClient.OptionalValue<List<String>> cc = request.getCc();
+        SdkClient.OptionalValue<List<String>> bcc = request.getBcc();
         SdkClient.OptionalValue<String> subject = request.getSubject();
         SdkClient.OptionalValue<String> html = request.getHtml();
         SdkClient.OptionalValue<String> text = request.getText();
@@ -43,6 +64,18 @@ public class InboxesPart2 extends InboxesPart1 {
         Validation.validateUuid("inbox_id", inboxId);
 
         Validation.validateUuid("draft_id", draftId);
+
+        if (to != null && to.isPresent() && to.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("to", to.value(), __i); }
+        }
+
+        if (cc != null && cc.isPresent() && cc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("cc", cc.value(), __i); }
+        }
+
+        if (bcc != null && bcc.isPresent() && bcc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("bcc", bcc.value(), __i); }
+        }
 
         if (subject != null && subject.isPresent() && subject.value() != null) {
             { Validation.LengthOpts __l = new Validation.LengthOpts(); __l.min = 1; __l.max = 2000; Validation.validateLength("subject", subject.value(), __l); }

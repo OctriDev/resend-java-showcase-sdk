@@ -11,7 +11,6 @@ import dev.octri.showcase.resend.models.inboxes_forward.ForwardInboxThreadEmailR
 import dev.octri.showcase.resend.models.inboxes_inbox.Inbox;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxAgent;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxAgentEnabledActionsItemEnum;
-import dev.octri.showcase.resend.models.inboxes_inbox.InboxDraft;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxDraftAttachmentInput;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxThreadEmail;
 import dev.octri.showcase.resend.models.inboxes_inbox.InboxThreadFolderEnum;
@@ -590,8 +589,8 @@ public class InboxesPart1 {
         String threadId = request.getThreadId();
         String emailId = request.getEmailId();
         String idempotencyKey = request.getIdempotencyKey();
-        SdkClient.OptionalValue<Object> cc = request.getCc();
-        SdkClient.OptionalValue<Object> bcc = request.getBcc();
+        SdkClient.OptionalValue<List<String>> cc = request.getCc();
+        SdkClient.OptionalValue<List<String>> bcc = request.getBcc();
         String html = request.getHtml();
         String text = request.getText();
         String subject = request.getSubject();
@@ -607,6 +606,14 @@ public class InboxesPart1 {
 
         if (idempotencyKey != null) {
             { Validation.LengthOpts __l = new Validation.LengthOpts(); __l.min = 1; __l.max = 256; Validation.validateLength("Idempotency-Key", idempotencyKey, __l); }
+        }
+
+        if (cc != null && cc.isPresent() && cc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 49; Validation.validateItems("cc", cc.value(), __i); }
+        }
+
+        if (bcc != null && bcc.isPresent() && bcc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 49; Validation.validateItems("bcc", bcc.value(), __i); }
         }
 
         if (subject != null) {
@@ -634,10 +641,10 @@ public class InboxesPart1 {
         String inboxId = request.getInboxId();
         String threadId = request.getThreadId();
         String emailId = request.getEmailId();
-        Object to = request.getTo();
+        List<String> to = request.getTo();
         String idempotencyKey = request.getIdempotencyKey();
-        SdkClient.OptionalValue<Object> cc = request.getCc();
-        SdkClient.OptionalValue<Object> bcc = request.getBcc();
+        SdkClient.OptionalValue<List<String>> cc = request.getCc();
+        SdkClient.OptionalValue<List<String>> bcc = request.getBcc();
         String html = request.getHtml();
         String text = request.getText();
         String subject = request.getSubject();
@@ -650,8 +657,18 @@ public class InboxesPart1 {
 
         Validation.validateUuid("email_id", emailId);
 
+        { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.min = 1; __i.max = 50; Validation.validateItems("to", to, __i); }
+
         if (idempotencyKey != null) {
             { Validation.LengthOpts __l = new Validation.LengthOpts(); __l.min = 1; __l.max = 256; Validation.validateLength("Idempotency-Key", idempotencyKey, __l); }
+        }
+
+        if (cc != null && cc.isPresent() && cc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("cc", cc.value(), __i); }
+        }
+
+        if (bcc != null && bcc.isPresent() && bcc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("bcc", bcc.value(), __i); }
         }
 
         if (subject != null) {
@@ -707,9 +724,9 @@ public class InboxesPart1 {
     public static CreateInboxDraftResponseSuccess inboxesCreateDraft(SdkConfig.ClientConfig clientConfig, Inboxes.InboxesCreateDraftRequest request, SdkConfig.RequestOptions options) {
         String inboxId = request.getInboxId();
         String idempotencyKey = request.getIdempotencyKey();
-        SdkClient.OptionalValue<Object> to = request.getTo();
-        SdkClient.OptionalValue<Object> cc = request.getCc();
-        SdkClient.OptionalValue<Object> bcc = request.getBcc();
+        SdkClient.OptionalValue<List<String>> to = request.getTo();
+        SdkClient.OptionalValue<List<String>> cc = request.getCc();
+        SdkClient.OptionalValue<List<String>> bcc = request.getBcc();
         SdkClient.OptionalValue<String> subject = request.getSubject();
         SdkClient.OptionalValue<String> html = request.getHtml();
         SdkClient.OptionalValue<String> text = request.getText();
@@ -721,6 +738,18 @@ public class InboxesPart1 {
 
         if (idempotencyKey != null) {
             { Validation.LengthOpts __l = new Validation.LengthOpts(); __l.min = 1; __l.max = 256; Validation.validateLength("Idempotency-Key", idempotencyKey, __l); }
+        }
+
+        if (to != null && to.isPresent() && to.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("to", to.value(), __i); }
+        }
+
+        if (cc != null && cc.isPresent() && cc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("cc", cc.value(), __i); }
+        }
+
+        if (bcc != null && bcc.isPresent() && bcc.value() != null) {
+            { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.max = 50; Validation.validateItems("bcc", bcc.value(), __i); }
         }
 
         if (subject != null && subject.isPresent() && subject.value() != null) {
@@ -736,26 +765,5 @@ public class InboxesPart1 {
         }
 
         return SdkClient.request(clientConfig, "POST", "/inboxes/" + SdkClient.encodePathSegment(inboxId) + "/drafts", null, SdkClient.q("to", to, "cc", cc, "bcc", bcc, "subject", subject, "html", html, "text", text, "attachments", attachments, "thread_id", SdkClient.omitIfNull(threadId), "reply_to_email_id", SdkClient.omitIfNull(replyToEmailId)), null, new TypeReference<CreateInboxDraftResponseSuccess>(){}, "inboxesCreateDraft", SdkClient.headers("Idempotency-Key", SdkClient.headerValue(idempotencyKey, false)), SdkClient.ResponseDecoder.JSON, options).data;
-    }
-
-    /**
-     * Retrieves a specific draft from an inbox. Use the inbox and draft identifiers to inspect its recipients, content, thread association, timestamps, and stored attachments.
-     */
-    public static InboxDraft inboxesGetDraft(SdkConfig.ClientConfig clientConfig, Inboxes.InboxesGetDraftRequest request) {
-        return inboxesGetDraft(clientConfig, request, null);
-    }
-
-    /**
-     * Retrieves a specific draft from an inbox. Use the inbox and draft identifiers to inspect its recipients, content, thread association, timestamps, and stored attachments.
-     */
-    public static InboxDraft inboxesGetDraft(SdkConfig.ClientConfig clientConfig, Inboxes.InboxesGetDraftRequest request, SdkConfig.RequestOptions options) {
-        String inboxId = request.getInboxId();
-        String draftId = request.getDraftId();
-
-        Validation.validateUuid("inbox_id", inboxId);
-
-        Validation.validateUuid("draft_id", draftId);
-
-        return SdkClient.request(clientConfig, "GET", "/inboxes/" + SdkClient.encodePathSegment(inboxId) + "/drafts/" + SdkClient.encodePathSegment(draftId) + "", null, null, null, new TypeReference<InboxDraft>(){}, "inboxesGetDraft", null, SdkClient.ResponseDecoder.JSON, options).data;
     }
 }

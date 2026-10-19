@@ -455,8 +455,8 @@ public class Inboxes extends InboxesPart2 {
         private String threadId;
         private String emailId;
         private String idempotencyKey;
-        private SdkClient.OptionalValue<Object> cc;
-        private SdkClient.OptionalValue<Object> bcc;
+        private SdkClient.OptionalValue<List<String>> cc;
+        private SdkClient.OptionalValue<List<String>> bcc;
         private String html;
         private String text;
         private String subject;
@@ -474,8 +474,8 @@ public class Inboxes extends InboxesPart2 {
             public Builder threadId(String val) { request.threadId = val; return this; }
             public Builder emailId(String val) { request.emailId = val; return this; }
             public Builder idempotencyKey(String val) { request.idempotencyKey = val; return this; }
-            public Builder cc(SdkClient.OptionalValue<Object> val) { request.cc = val; return this; }
-            public Builder bcc(SdkClient.OptionalValue<Object> val) { request.bcc = val; return this; }
+            public Builder cc(SdkClient.OptionalValue<List<String>> val) { request.cc = val; return this; }
+            public Builder bcc(SdkClient.OptionalValue<List<String>> val) { request.bcc = val; return this; }
             public Builder html(String val) { request.html = val; return this; }
             public Builder text(String val) { request.text = val; return this; }
             public Builder subject(String val) { request.subject = val; return this; }
@@ -488,8 +488,8 @@ public class Inboxes extends InboxesPart2 {
         public String getThreadId() { return threadId; }
         public String getEmailId() { return emailId; }
         public String getIdempotencyKey() { return idempotencyKey; }
-        public SdkClient.OptionalValue<Object> getCc() { return cc; }
-        public SdkClient.OptionalValue<Object> getBcc() { return bcc; }
+        public SdkClient.OptionalValue<List<String>> getCc() { return cc; }
+        public SdkClient.OptionalValue<List<String>> getBcc() { return bcc; }
         public String getHtml() { return html; }
         public String getText() { return text; }
         public String getSubject() { return subject; }
@@ -503,10 +503,10 @@ public class Inboxes extends InboxesPart2 {
         private String inboxId;
         private String threadId;
         private String emailId;
-        private Object to;
+        private List<String> to;
         private String idempotencyKey;
-        private SdkClient.OptionalValue<Object> cc;
-        private SdkClient.OptionalValue<Object> bcc;
+        private SdkClient.OptionalValue<List<String>> cc;
+        private SdkClient.OptionalValue<List<String>> bcc;
         private String html;
         private String text;
         private String subject;
@@ -522,10 +522,10 @@ public class Inboxes extends InboxesPart2 {
             public Builder inboxId(String val) { request.inboxId = val; return this; }
             public Builder threadId(String val) { request.threadId = val; return this; }
             public Builder emailId(String val) { request.emailId = val; return this; }
-            public Builder to(Object val) { request.to = val; return this; }
+            public Builder to(List<String> val) { request.to = val; return this; }
             public Builder idempotencyKey(String val) { request.idempotencyKey = val; return this; }
-            public Builder cc(SdkClient.OptionalValue<Object> val) { request.cc = val; return this; }
-            public Builder bcc(SdkClient.OptionalValue<Object> val) { request.bcc = val; return this; }
+            public Builder cc(SdkClient.OptionalValue<List<String>> val) { request.cc = val; return this; }
+            public Builder bcc(SdkClient.OptionalValue<List<String>> val) { request.bcc = val; return this; }
             public Builder html(String val) { request.html = val; return this; }
             public Builder text(String val) { request.text = val; return this; }
             public Builder subject(String val) { request.subject = val; return this; }
@@ -536,10 +536,10 @@ public class Inboxes extends InboxesPart2 {
         public String getInboxId() { return inboxId; }
         public String getThreadId() { return threadId; }
         public String getEmailId() { return emailId; }
-        public Object getTo() { return to; }
+        public List<String> getTo() { return to; }
         public String getIdempotencyKey() { return idempotencyKey; }
-        public SdkClient.OptionalValue<Object> getCc() { return cc; }
-        public SdkClient.OptionalValue<Object> getBcc() { return bcc; }
+        public SdkClient.OptionalValue<List<String>> getCc() { return cc; }
+        public SdkClient.OptionalValue<List<String>> getBcc() { return bcc; }
         public String getHtml() { return html; }
         public String getText() { return text; }
         public String getSubject() { return subject; }
@@ -576,9 +576,9 @@ public class Inboxes extends InboxesPart2 {
 
         private String inboxId;
         private String idempotencyKey;
-        private SdkClient.OptionalValue<Object> to;
-        private SdkClient.OptionalValue<Object> cc;
-        private SdkClient.OptionalValue<Object> bcc;
+        private SdkClient.OptionalValue<List<String>> to;
+        private SdkClient.OptionalValue<List<String>> cc;
+        private SdkClient.OptionalValue<List<String>> bcc;
         private SdkClient.OptionalValue<String> subject;
         private SdkClient.OptionalValue<String> html;
         private SdkClient.OptionalValue<String> text;
@@ -594,9 +594,9 @@ public class Inboxes extends InboxesPart2 {
             private final InboxesCreateDraftRequest request = new InboxesCreateDraftRequest();
             public Builder inboxId(String val) { request.inboxId = val; return this; }
             public Builder idempotencyKey(String val) { request.idempotencyKey = val; return this; }
-            public Builder to(SdkClient.OptionalValue<Object> val) { request.to = val; return this; }
-            public Builder cc(SdkClient.OptionalValue<Object> val) { request.cc = val; return this; }
-            public Builder bcc(SdkClient.OptionalValue<Object> val) { request.bcc = val; return this; }
+            public Builder to(SdkClient.OptionalValue<List<String>> val) { request.to = val; return this; }
+            public Builder cc(SdkClient.OptionalValue<List<String>> val) { request.cc = val; return this; }
+            public Builder bcc(SdkClient.OptionalValue<List<String>> val) { request.bcc = val; return this; }
             public Builder subject(SdkClient.OptionalValue<String> val) { request.subject = val; return this; }
             public Builder html(SdkClient.OptionalValue<String> val) { request.html = val; return this; }
             public Builder text(SdkClient.OptionalValue<String> val) { request.text = val; return this; }
@@ -607,9 +607,9 @@ public class Inboxes extends InboxesPart2 {
         }
         public String getInboxId() { return inboxId; }
         public String getIdempotencyKey() { return idempotencyKey; }
-        public SdkClient.OptionalValue<Object> getTo() { return to; }
-        public SdkClient.OptionalValue<Object> getCc() { return cc; }
-        public SdkClient.OptionalValue<Object> getBcc() { return bcc; }
+        public SdkClient.OptionalValue<List<String>> getTo() { return to; }
+        public SdkClient.OptionalValue<List<String>> getCc() { return cc; }
+        public SdkClient.OptionalValue<List<String>> getBcc() { return bcc; }
         public SdkClient.OptionalValue<String> getSubject() { return subject; }
         public SdkClient.OptionalValue<String> getHtml() { return html; }
         public SdkClient.OptionalValue<String> getText() { return text; }
@@ -641,9 +641,9 @@ public class Inboxes extends InboxesPart2 {
 
         private String inboxId;
         private String draftId;
-        private SdkClient.OptionalValue<Object> to;
-        private SdkClient.OptionalValue<Object> cc;
-        private SdkClient.OptionalValue<Object> bcc;
+        private SdkClient.OptionalValue<List<String>> to;
+        private SdkClient.OptionalValue<List<String>> cc;
+        private SdkClient.OptionalValue<List<String>> bcc;
         private SdkClient.OptionalValue<String> subject;
         private SdkClient.OptionalValue<String> html;
         private SdkClient.OptionalValue<String> text;
@@ -657,9 +657,9 @@ public class Inboxes extends InboxesPart2 {
             private final InboxesUpdateDraftRequest request = new InboxesUpdateDraftRequest();
             public Builder inboxId(String val) { request.inboxId = val; return this; }
             public Builder draftId(String val) { request.draftId = val; return this; }
-            public Builder to(SdkClient.OptionalValue<Object> val) { request.to = val; return this; }
-            public Builder cc(SdkClient.OptionalValue<Object> val) { request.cc = val; return this; }
-            public Builder bcc(SdkClient.OptionalValue<Object> val) { request.bcc = val; return this; }
+            public Builder to(SdkClient.OptionalValue<List<String>> val) { request.to = val; return this; }
+            public Builder cc(SdkClient.OptionalValue<List<String>> val) { request.cc = val; return this; }
+            public Builder bcc(SdkClient.OptionalValue<List<String>> val) { request.bcc = val; return this; }
             public Builder subject(SdkClient.OptionalValue<String> val) { request.subject = val; return this; }
             public Builder html(SdkClient.OptionalValue<String> val) { request.html = val; return this; }
             public Builder text(SdkClient.OptionalValue<String> val) { request.text = val; return this; }
@@ -668,9 +668,9 @@ public class Inboxes extends InboxesPart2 {
         }
         public String getInboxId() { return inboxId; }
         public String getDraftId() { return draftId; }
-        public SdkClient.OptionalValue<Object> getTo() { return to; }
-        public SdkClient.OptionalValue<Object> getCc() { return cc; }
-        public SdkClient.OptionalValue<Object> getBcc() { return bcc; }
+        public SdkClient.OptionalValue<List<String>> getTo() { return to; }
+        public SdkClient.OptionalValue<List<String>> getCc() { return cc; }
+        public SdkClient.OptionalValue<List<String>> getBcc() { return bcc; }
         public SdkClient.OptionalValue<String> getSubject() { return subject; }
         public SdkClient.OptionalValue<String> getHtml() { return html; }
         public SdkClient.OptionalValue<String> getText() { return text; }

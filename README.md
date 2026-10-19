@@ -28,11 +28,11 @@ Then add the dependency to your own `pom.xml`:
 
 ## Quickstart
 
-The example calls `client.domains.get` (GET `/domains/{domain_id}`) with example values for its required arguments.
+The example calls `client.emails.send` (POST `/emails`) with example values for its required arguments.
 
 ```java
 import dev.octri.showcase.resend.*;
-import dev.octri.showcase.resend.methods.Domains;
+import dev.octri.showcase.resend.methods.Emails;
 
 public final class Example {
     public static void main(String[] args) throws Exception {
@@ -43,7 +43,7 @@ public final class Example {
         auth.bearerAuth = System.getenv("API_TOKEN");
         config.auth = auth;
         var client = new Resend(config);
-        var result = client.domains.get(Domains.DomainsGetRequest.builder().domainId("domain-1").build());
+        var result = client.emails.send(Emails.EmailsSendRequest.builder().from("user@example.com").to(java.util.List.of("user@example.com")).subject("subject").build());
         System.out.println(result);
     }
 }
