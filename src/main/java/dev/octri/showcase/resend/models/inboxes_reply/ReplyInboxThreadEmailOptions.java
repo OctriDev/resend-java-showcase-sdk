@@ -19,11 +19,11 @@ public final class ReplyInboxThreadEmailOptions {
     /**
      * CC recipient email address. For multiple addresses, send as an array of strings. Without `reply_all`, the reply copies only these addresses. With `reply_all`, these addresses are merged with the copied recipients, without duplicates. `cc` and `bcc` combined must be fewer than 50 addresses. After the `to` recipients are added, the reply cannot exceed 50 recipients. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
      */
-    @Nullable public Object cc;
+    @Nullable public List<String> cc;
     /**
      * BCC recipient email address. For multiple addresses, send as an array of strings. BCC recipients of the original message are never copied. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
      */
-    @Nullable public Object bcc;
+    @Nullable public List<String> bcc;
     /**
      * The HTML body of the reply.
      */
@@ -51,16 +51,16 @@ public final class ReplyInboxThreadEmailOptions {
     private ReplyInboxThreadEmailOptions() {}
     public static Builder builder() { return new Builder(); }
     public static final class Builder {
-        private Object cc;
-        private Object bcc;
+        private List<String> cc;
+        private List<String> bcc;
         private String html;
         private String text;
         private String subject;
         private Boolean replyAll;
         private List<Attachment> attachments;
         private Map<String, String> headers;
-        public Builder cc(Object value) { this.cc = value; return this; }
-        public Builder bcc(Object value) { this.bcc = value; return this; }
+        public Builder cc(List<String> value) { this.cc = value; return this; }
+        public Builder bcc(List<String> value) { this.bcc = value; return this; }
         public Builder html(String value) { this.html = value; return this; }
         public Builder text(String value) { this.text = value; return this; }
         public Builder subject(String value) { this.subject = value; return this; }
@@ -69,7 +69,13 @@ public final class ReplyInboxThreadEmailOptions {
         public Builder headers(Map<String, String> value) { this.headers = value; return this; }
         public ReplyInboxThreadEmailOptions build() {
             ReplyInboxThreadEmailOptions result = new ReplyInboxThreadEmailOptions();
+            if (this.cc != null) {
+                { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.max = 49; Validation.validateItems("cc", this.cc, __items); }
+            }
             result.cc = this.cc;
+            if (this.bcc != null) {
+                { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.max = 49; Validation.validateItems("bcc", this.bcc, __items); }
+            }
             result.bcc = this.bcc;
             result.html = this.html;
             result.text = this.text;

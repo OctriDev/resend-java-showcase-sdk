@@ -89,12 +89,12 @@ public class Emails {
     public static class EmailsSendRequest {
 
         private String from;
-        private Object to;
+        private List<String> to;
         private String subject;
         private String idempotencyKey;
-        private Object bcc;
-        private Object cc;
-        private Object replyTo;
+        private List<String> bcc;
+        private List<String> cc;
+        private List<String> replyTo;
         private String html;
         private String text;
         private EmailTemplateInput template;
@@ -111,12 +111,12 @@ public class Emails {
         public static class Builder {
             private final EmailsSendRequest request = new EmailsSendRequest();
             public Builder from(String val) { request.from = val; return this; }
-            public Builder to(Object val) { request.to = val; return this; }
+            public Builder to(List<String> val) { request.to = val; return this; }
             public Builder subject(String val) { request.subject = val; return this; }
             public Builder idempotencyKey(String val) { request.idempotencyKey = val; return this; }
-            public Builder bcc(Object val) { request.bcc = val; return this; }
-            public Builder cc(Object val) { request.cc = val; return this; }
-            public Builder replyTo(Object val) { request.replyTo = val; return this; }
+            public Builder bcc(List<String> val) { request.bcc = val; return this; }
+            public Builder cc(List<String> val) { request.cc = val; return this; }
+            public Builder replyTo(List<String> val) { request.replyTo = val; return this; }
             public Builder html(String val) { request.html = val; return this; }
             public Builder text(String val) { request.text = val; return this; }
             public Builder template(EmailTemplateInput val) { request.template = val; return this; }
@@ -128,12 +128,12 @@ public class Emails {
             public EmailsSendRequest build() { return request; }
         }
         public String getFrom() { return from; }
-        public Object getTo() { return to; }
+        public List<String> getTo() { return to; }
         public String getSubject() { return subject; }
         public String getIdempotencyKey() { return idempotencyKey; }
-        public Object getBcc() { return bcc; }
-        public Object getCc() { return cc; }
-        public Object getReplyTo() { return replyTo; }
+        public List<String> getBcc() { return bcc; }
+        public List<String> getCc() { return cc; }
+        public List<String> getReplyTo() { return replyTo; }
         public String getHtml() { return html; }
         public String getText() { return text; }
         public EmailTemplateInput getTemplate() { return template; }
@@ -156,12 +156,12 @@ public class Emails {
      */
     public static SendEmailResponse emailsSend(SdkConfig.ClientConfig clientConfig, EmailsSendRequest request, SdkConfig.RequestOptions options) {
         String from = request.getFrom();
-        Object to = request.getTo();
+        List<String> to = request.getTo();
         String subject = request.getSubject();
         String idempotencyKey = request.getIdempotencyKey();
-        Object bcc = request.getBcc();
-        Object cc = request.getCc();
-        Object replyTo = request.getReplyTo();
+        List<String> bcc = request.getBcc();
+        List<String> cc = request.getCc();
+        List<String> replyTo = request.getReplyTo();
         String html = request.getHtml();
         String text = request.getText();
         EmailTemplateInput template = request.getTemplate();
@@ -170,6 +170,8 @@ public class Emails {
         List<Attachment> attachments = request.getAttachments();
         List<Tag> tags = request.getTags();
         String topicId = request.getTopicId();
+
+        { Validation.LengthOpts __i = new Validation.LengthOpts(); __i.min = 1; __i.max = 50; Validation.validateItems("to", to, __i); }
 
         if (idempotencyKey != null) {
             { Validation.LengthOpts __l = new Validation.LengthOpts(); __l.max = 256; Validation.validateLength("Idempotency-Key", idempotencyKey, __l); }

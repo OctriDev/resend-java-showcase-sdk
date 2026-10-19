@@ -18,15 +18,15 @@ public final class CreateInboxDraftOptions {
     /**
      * The recipients. For multiple addresses, send an array of strings. Each value can include a friendly name, for example `Ada Lovelace <ada@example.org>`. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
      */
-    @Nullable public Object to;
+    @Nullable public List<String> to;
     /**
      * The CC recipients. For multiple addresses, send an array of strings. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
      */
-    @Nullable public Object cc;
+    @Nullable public List<String> cc;
     /**
      * The BCC recipients. For multiple addresses, send an array of strings. Each address is `email@example.com` or `Name <email@example.com>`. An address that is not valid returns a 422.
      */
-    @Nullable public Object bcc;
+    @Nullable public List<String> bcc;
     /**
      * The subject. Max 2000 characters. A string that is only whitespace, or that contains a line break, is rejected.
      */
@@ -54,18 +54,18 @@ public final class CreateInboxDraftOptions {
     private CreateInboxDraftOptions() {}
     public static Builder builder() { return new Builder(); }
     public static final class Builder {
-        private Object to;
-        private Object cc;
-        private Object bcc;
+        private List<String> to;
+        private List<String> cc;
+        private List<String> bcc;
         private String subject;
         private String html;
         private String text;
         private List<InboxDraftAttachmentInput> attachments;
         private String threadId;
         private String replyToEmailId;
-        public Builder to(Object value) { this.to = value; return this; }
-        public Builder cc(Object value) { this.cc = value; return this; }
-        public Builder bcc(Object value) { this.bcc = value; return this; }
+        public Builder to(List<String> value) { this.to = value; return this; }
+        public Builder cc(List<String> value) { this.cc = value; return this; }
+        public Builder bcc(List<String> value) { this.bcc = value; return this; }
         public Builder subject(String value) { this.subject = value; return this; }
         public Builder html(String value) { this.html = value; return this; }
         public Builder text(String value) { this.text = value; return this; }
@@ -74,8 +74,17 @@ public final class CreateInboxDraftOptions {
         public Builder replyToEmailId(String value) { this.replyToEmailId = value; return this; }
         public CreateInboxDraftOptions build() {
             CreateInboxDraftOptions result = new CreateInboxDraftOptions();
+            if (this.to != null) {
+                { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.max = 50; Validation.validateItems("to", this.to, __items); }
+            }
             result.to = this.to;
+            if (this.cc != null) {
+                { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.max = 50; Validation.validateItems("cc", this.cc, __items); }
+            }
             result.cc = this.cc;
+            if (this.bcc != null) {
+                { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.max = 50; Validation.validateItems("bcc", this.bcc, __items); }
+            }
             result.bcc = this.bcc;
             if (this.subject != null) {
                 { Validation.LengthOpts __length = new Validation.LengthOpts(); __length.min = 1; __length.max = 2000; Validation.validateLength("subject", this.subject, __length); }
