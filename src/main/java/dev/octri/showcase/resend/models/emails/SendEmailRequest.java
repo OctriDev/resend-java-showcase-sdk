@@ -23,7 +23,7 @@ public final class SendEmailRequest {
     /**
      * Recipient email address. For multiple addresses, send as an array of strings. Max 50.
      */
-    public Object to;
+    public List<String> to;
     /**
      * Email subject.
      */
@@ -31,15 +31,15 @@ public final class SendEmailRequest {
     /**
      * Bcc recipient email address. For multiple addresses, send as an array of strings.
      */
-    @Nullable public Object bcc;
+    @Nullable public List<String> bcc;
     /**
      * Cc recipient email address. For multiple addresses, send as an array of strings.
      */
-    @Nullable public Object cc;
+    @Nullable public List<String> cc;
     /**
      * Reply-to email address. For multiple addresses, send as an array of strings.
      */
-    @Nullable @JsonProperty("reply_to") public Object replyTo;
+    @Nullable @JsonProperty("reply_to") public List<String> replyTo;
     /**
      * The HTML version of the message.
      */
@@ -76,11 +76,11 @@ public final class SendEmailRequest {
     public static Builder builder() { return new Builder(); }
     public static final class Builder {
         private String from;
-        private Object to;
+        private List<String> to;
         private String subject;
-        private Object bcc;
-        private Object cc;
-        private Object replyTo;
+        private List<String> bcc;
+        private List<String> cc;
+        private List<String> replyTo;
         private String html;
         private String text;
         private EmailTemplateInput template;
@@ -90,11 +90,11 @@ public final class SendEmailRequest {
         private List<Tag> tags;
         private String topicId;
         public Builder from(String value) { this.from = value; return this; }
-        public Builder to(Object value) { this.to = value; return this; }
+        public Builder to(List<String> value) { this.to = value; return this; }
         public Builder subject(String value) { this.subject = value; return this; }
-        public Builder bcc(Object value) { this.bcc = value; return this; }
-        public Builder cc(Object value) { this.cc = value; return this; }
-        public Builder replyTo(Object value) { this.replyTo = value; return this; }
+        public Builder bcc(List<String> value) { this.bcc = value; return this; }
+        public Builder cc(List<String> value) { this.cc = value; return this; }
+        public Builder replyTo(List<String> value) { this.replyTo = value; return this; }
         public Builder html(String value) { this.html = value; return this; }
         public Builder text(String value) { this.text = value; return this; }
         public Builder template(EmailTemplateInput value) { this.template = value; return this; }
@@ -108,6 +108,7 @@ public final class SendEmailRequest {
             Validation.validateRequired("from", this.from);
             result.from = this.from;
             Validation.validateRequired("to", this.to);
+            { Validation.LengthOpts __items = new Validation.LengthOpts(); __items.min = 1; __items.max = 50; Validation.validateItems("to", this.to, __items); }
             result.to = this.to;
             Validation.validateRequired("subject", this.subject);
             result.subject = this.subject;
