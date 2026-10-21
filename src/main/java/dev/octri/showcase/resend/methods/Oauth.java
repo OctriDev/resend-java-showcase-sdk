@@ -58,18 +58,18 @@ public class Oauth {
 
 
 
-    public static class RevokeGrantRequest {
+    public static class RevokeOauthGrantRequest {
 
         private String oauthGrantId;
 
-        private RevokeGrantRequest() {}
+        private RevokeOauthGrantRequest() {}
 
         public static Builder builder() { return new Builder(); }
 
         public static class Builder {
-            private final RevokeGrantRequest request = new RevokeGrantRequest();
+            private final RevokeOauthGrantRequest request = new RevokeOauthGrantRequest();
             public Builder oauthGrantId(String val) { request.oauthGrantId = val; return this; }
-            public RevokeGrantRequest build() { return request; }
+            public RevokeOauthGrantRequest build() { return request; }
         }
         public String getOauthGrantId() { return oauthGrantId; }
     }
@@ -77,17 +77,17 @@ public class Oauth {
     /**
      * Revokes an OAuth grant, removing the authorization associated with it. Supply the grant's ID to identify which authorization to revoke. The response includes the revocation time and reason.
      */
-    public static RevokeOAuthGrantResponse revokeGrant(SdkConfig.ClientConfig clientConfig, RevokeGrantRequest request) {
-        return revokeGrant(clientConfig, request, null);
+    public static RevokeOAuthGrantResponse revokeOauthGrant(SdkConfig.ClientConfig clientConfig, RevokeOauthGrantRequest request) {
+        return revokeOauthGrant(clientConfig, request, null);
     }
 
     /**
      * Revokes an OAuth grant, removing the authorization associated with it. Supply the grant's ID to identify which authorization to revoke. The response includes the revocation time and reason.
      */
-    public static RevokeOAuthGrantResponse revokeGrant(SdkConfig.ClientConfig clientConfig, RevokeGrantRequest request, SdkConfig.RequestOptions options) {
+    public static RevokeOAuthGrantResponse revokeOauthGrant(SdkConfig.ClientConfig clientConfig, RevokeOauthGrantRequest request, SdkConfig.RequestOptions options) {
         String oauthGrantId = request.getOauthGrantId();
 
-        return SdkClient.request(clientConfig, "DELETE", "/oauth/grants/" + SdkClient.encodePathSegment(oauthGrantId) + "", null, null, null, new TypeReference<RevokeOAuthGrantResponse>(){}, "revokeGrant", null, SdkClient.ResponseDecoder.JSON, options).data;
+        return SdkClient.request(clientConfig, "DELETE", "/oauth/grants/" + SdkClient.encodePathSegment(oauthGrantId) + "", null, null, null, new TypeReference<RevokeOAuthGrantResponse>(){}, "revokeOauthGrant", null, SdkClient.ResponseDecoder.JSON, options).data;
     }
 
 

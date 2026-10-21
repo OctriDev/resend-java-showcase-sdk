@@ -12,7 +12,7 @@ import dev.octri.showcase.resend.SdkClient;
 import java.util.List;
 import java.util.Map;
 
-public class Inboxes extends InboxesPart2 {
+public class Inboxes extends InboxesDraftsOperations {
 
     public static class InboxesCreateRequest {
 

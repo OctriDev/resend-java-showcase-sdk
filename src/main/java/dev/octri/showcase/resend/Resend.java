@@ -661,15 +661,15 @@ public class Resend {
         /**
          * Revokes an OAuth grant, removing the authorization associated with it. Supply the grant's ID to identify which authorization to revoke. The response includes the revocation time and reason.
          */
-        public RevokeOAuthGrantResponse revokeGrant(Oauth.RevokeGrantRequest request) {
-            return Oauth.revokeGrant(this.clientConfig, request);
+        public RevokeOAuthGrantResponse revokeGrant(Oauth.RevokeOauthGrantRequest request) {
+            return Oauth.revokeOauthGrant(this.clientConfig, request);
         }
 
         /**
          * Revokes an OAuth grant, removing the authorization associated with it. Supply the grant's ID to identify which authorization to revoke. The response includes the revocation time and reason.
          */
-        public RevokeOAuthGrantResponse revokeGrant(Oauth.RevokeGrantRequest request, SdkConfig.RequestOptions options) {
-            return Oauth.revokeGrant(this.clientConfig, request, options);
+        public RevokeOAuthGrantResponse revokeGrant(Oauth.RevokeOauthGrantRequest request, SdkConfig.RequestOptions options) {
+            return Oauth.revokeOauthGrant(this.clientConfig, request, options);
         }
 
     }
