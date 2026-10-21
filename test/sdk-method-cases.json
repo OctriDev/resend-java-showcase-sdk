@@ -2914,7 +2914,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesOperations",
       "arguments": {
         "emailAddress": "support@acme.com",
         "name": "Customer Support",
@@ -2950,7 +2950,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesDraftsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "idempotencyKey": "x",
@@ -3019,7 +3019,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesLabelsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "name": "Urgent",
@@ -3052,7 +3052,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "threadId": "00000000-0000-4000-8000-000000000000",
@@ -3127,7 +3127,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesOperations",
       "arguments": {
         "inboxId": "b3e2b2b6-3f0e-4c8e-9ad3-2f43a1e2c7f1"
       },
@@ -3163,7 +3163,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesAgentOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000"
       },
@@ -3195,7 +3195,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart2",
+      "owner": "dev.octri.showcase.resend.methods.InboxesDraftsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "draftId": "00000000-0000-4000-8000-000000000000"
@@ -3247,7 +3247,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "threadId": "00000000-0000-4000-8000-000000000000"
@@ -3287,7 +3287,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "threadId": "00000000-0000-4000-8000-000000000000",
@@ -3342,7 +3342,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesOperations",
       "arguments": {
         "limit": 1,
         "after": "after",
@@ -3385,7 +3385,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesDraftsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "limit": 1,
@@ -3445,7 +3445,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesLabelsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000"
       },
@@ -3479,7 +3479,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "threadId": "00000000-0000-4000-8000-000000000000",
@@ -3546,7 +3546,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "folders": [
@@ -3621,7 +3621,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesOperations",
       "arguments": {
         "inboxId": "b3e2b2b6-3f0e-4c8e-9ad3-2f43a1e2c7f1"
       },
@@ -3649,7 +3649,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart2",
+      "owner": "dev.octri.showcase.resend.methods.InboxesDraftsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "draftId": "00000000-0000-4000-8000-000000000000"
@@ -3680,7 +3680,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesLabelsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "labelId": "00000000-0000-4000-8000-000000000000"
@@ -3711,7 +3711,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "threadId": "00000000-0000-4000-8000-000000000000"
@@ -3742,7 +3742,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "threadId": "00000000-0000-4000-8000-000000000000",
@@ -3815,7 +3815,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "query": "invoice -draft",
@@ -3932,7 +3932,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart2",
+      "owner": "dev.octri.showcase.resend.methods.InboxesDraftsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "draftId": "00000000-0000-4000-8000-000000000000",
@@ -3969,7 +3969,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesOperations",
       "arguments": {
         "inboxId": "b3e2b2b6-3f0e-4c8e-9ad3-2f43a1e2c7f1",
         "name": "Customer Support",
@@ -4002,7 +4002,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesAgentOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "instructions": "Answer refund questions yourself. Escalate legal threats.",
@@ -4041,7 +4041,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart2",
+      "owner": "dev.octri.showcase.resend.methods.InboxesDraftsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "draftId": "00000000-0000-4000-8000-000000000000",
@@ -4126,7 +4126,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesLabelsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "labelId": "00000000-0000-4000-8000-000000000000",
@@ -4162,7 +4162,7 @@
         "inboxes"
       ],
       "mode": "normal",
-      "owner": "dev.octri.showcase.resend.methods.InboxesPart1",
+      "owner": "dev.octri.showcase.resend.methods.InboxesThreadsOperations",
       "arguments": {
         "inboxId": "00000000-0000-4000-8000-000000000000",
         "threadId": "00000000-0000-4000-8000-000000000000",
@@ -4509,9 +4509,9 @@
       }
     },
     {
-      "id": "revokeGrant:revokeGrant",
-      "operationId": "revokeGrant",
-      "methodName": "revokeGrant",
+      "id": "revokeOauthGrant:revokeOauthGrant",
+      "operationId": "revokeOauthGrant",
+      "methodName": "revokeOauthGrant",
       "namespace": [
         "oauth"
       ],
